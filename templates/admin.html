@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+            font-weight: bold;
+        }
+
+        td {
+            background-color: #fff;
+            color: #333;
+        }
+
+        a.button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 12px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        a.button.download {
+            margin-right: 10px;
+        }
+
+        a.button:hover {
+            background-color: #45a049;
+        }
+
+        .message {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .qr-code-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .qr-code {
+            max-width: 200px;
+            max-height: 200px;
+        }
+
+        .upload-button {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .upload-button:hover {
+            background-color: #45a049;
+        }
+
+        .upload-message {
+            font-size: 18px;
+            color: #666;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        setTimeout(function() {
+            location.reload();
+        }, 30000);
+    </script>
+</head>
+<body>
+    <div class="qr-code-container">
+        <div>
+            <h1>Welcome to the Admin Panel</h1>
+            <h2>Your Mobile Number/Id : {{current_user}}</h2>
+            <p class="upload-message">Scan the QR code to upload files</p>
+        </div>
+        <div>
+            <a href="{{ url_for('upload_file', username=current_user) }}">
+                <img src="{{admin_qrcode}}" alt="QR Code" class="qr-code">
+            </a>
+            <br>
+            <a href="{{ url_for('upload_file', username=current_user) }}" class="upload-button">Click to Upload</a>
+        </div>
+    </div>
+    {% if message %}
+        <p class="message">{{ message }}</p>
+    {% endif %}
+    <table>
+        <tr>
+            <th>File Name</th>
+            <th>Timestamp</th>
+            <th>File Type</th>
+            <th>Actions</th>
+        </tr>
+        {% for file, timestamp, file_type in file_info %}
+            <tr>
+                <td><a href="{{ url_for('download_file', filename=file) }}">{{ file }}</a></td>
+                <td>{{ timestamp }}</td>
+                <td>{{ file_type }}</td>
+                <td>
+                    <a href="{{ url_for('download_file', filename=file) }}" class="button download">Download</a>
+                    <a href="{{ url_for('delete_file', filename=file) }}" class="button">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
