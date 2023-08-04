@@ -1,19 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png">
+    <link rel="manifest" href="/static/site.webmanifest">
     <title>Admin Page</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 20px;
-            background-color: #f5f5f5;
+            background-color: #000;
         }
 
         h1 {
-            color: #333;
-            font-size: 24px;
+            color: #00ffcc;
+            font-size: 28px;
             margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
         }
 
         p {
@@ -26,27 +32,32 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 30px;
+            background-color: #111;
+            border: 1px solid #444;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
 
         th, td {
             padding: 10px;
             text-align: left;
+            color: #fff;
         }
 
         th {
-            background-color: #f2f2f2;
-            color: #333;
+            background-color: #00ffcc;
             font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         td {
-            background-color: #fff;
-            color: #333;
+            background-color: #111;
         }
 
         a.button {
-            background-color: #4CAF50;
-            color: white;
+            background-color: #00ffcc;
+            color: #000;
             padding: 8px 12px;
             text-align: center;
             text-decoration: none;
@@ -55,19 +66,25 @@
             border: none;
             cursor: pointer;
             transition: background-color 0.3s ease;
-        }
-
-        a.button.download {
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             margin-right: 10px;
         }
 
+        a.button.download {
+            background-color: #4CAF50;
+            color: white;
+        }
+
         a.button:hover {
-            background-color: #45a049;
+            background-color: #00d1a3;
         }
 
         .message {
             font-weight: bold;
             margin-top: 20px;
+            color: #fff;
         }
 
         .qr-code-container {
@@ -84,21 +101,43 @@
         .upload-button {
             display: inline-block;
             padding: 8px 16px;
-            background-color: #4CAF50;
-            color: white;
+            background-color: #00ffcc;
+            color: #000;
             text-decoration: none;
             border-radius: 4px;
             font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-right: 10px;
         }
 
         .upload-button:hover {
+            background-color: #00d1a3;
+        }
+
+        .download-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .download-button:hover {
             background-color: #45a049;
         }
 
         .upload-message {
-            font-size: 18px;
-            color: #666;
+            font-size: 28px;
+            color: #00ff04;
             margin-top: 20px;
+        }
+        .qr-code {
+            max-width: 200px;
+            max-height: 200px;
         }
     </style>
     <script>
@@ -111,15 +150,17 @@
     <div class="qr-code-container">
         <div>
             <h1>Welcome to the Admin Panel</h1>
-            <h2>Your Mobile Number/Id : {{current_user}}</h2>
-            <p class="upload-message">Scan the QR code to upload files</p>
+            <h2>Your Mobile Number/Id : {{ current_user }}</h2>
+            <h2 class="upload-message">Scan the QR code to upload files</h2>
         </div>
         <div>
+            <!-- Add the URL for the QR code image here -->
             <a href="{{ url_for('upload_file', username=current_user) }}">
-                <img src="{{admin_qrcode}}" alt="QR Code" class="qr-code">
+                <img src="{{ admin_qrcode }}" alt="QR Code" class="qr-code">
             </a>
             <br>
             <a href="{{ url_for('upload_file', username=current_user) }}" class="upload-button">Click to Upload</a>
+            <a href="{{ url_for('download_qr_code', username=current_user) }}" class="download-button">Download QR Code</a>
         </div>
     </div>
     {% if message %}

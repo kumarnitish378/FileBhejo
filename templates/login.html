@@ -1,56 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png">
+    <link rel="manifest" href="/static/site.webmanifest">
     <title>Login To FileHub</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 20px;
-            background-color: #f5f5f5;
+            background-color: #000;
         }
 
         .container {
             max-width: 400px;
             margin: 0 auto;
-            background-color: #fff;
+            background-color: #111;
             padding: 40px;
-            border-radius: 4px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
 
         h1 {
             text-align: center;
             margin-bottom: 20px;
+            color: #fff;
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
         }
 
         label {
             display: block;
             margin-bottom: 10px;
             font-weight: bold;
+            color: #fff;
         }
 
         input[type="text"],
         input[type="password"] {
             width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
+            padding: 10px;
+            border: 1px solid #444;
             border-radius: 4px;
             box-sizing: border-box;
             margin-bottom: 20px;
+            color: #fff;
+            background-color: #222;
+            font-size: 16px;
         }
 
         input[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
+            background-color: #00ffcc;
+            color: #000;
+            padding: 12px 24px;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
             cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: background-color 0.3s ease;
         }
 
         input[type="submit"]:hover {
-            background-color: #45a049;
+            background-color: #00d1a3;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #00ffcc;
+            font-weight: bold;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        a:hover {
+            color: #00d1a3;
         }
     </style>
 </head>
@@ -73,5 +103,4 @@
         <a href="{{ url_for('register_user') }}">New User Registration</a>
     </div>
 </body>
-
 </html>

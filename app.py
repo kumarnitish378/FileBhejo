@@ -16,6 +16,9 @@ db = MyDB()
 # Database connection details (you can modify as needed)
 DB_NAME = "printpro.db"
 
+def get_base_url():
+    return request.url_root
+
 def get_timestamp(filename):
     # Extract the timestamp from the filename
     timestamp = filename.split('__')[-1].split('.')[0]
@@ -99,7 +102,7 @@ def register_user():
         db = MyDB(DB_NAME)
         db.connect()
         if db.insert_user(username, mobile_number, hashed_password, role):
-            qr_path = generate_qr_code(mobile_number, f"http://192.168.1.4:5000/upload/{mobile_number}")
+            qr_path = generate_qr_code(mobile_number, f"{get_base_url()}upload/{mobile_number}")
             db.insert_qr_code_location(mobile_number, qr_path)
             return redirect(url_for('login'))  # Redirect to the login page after successful registration
         else:
@@ -116,6 +119,7 @@ def index():
 
 @app.route('/', methods=['GET', 'POST'])
 def home_index():
+    print(get_base_url())
     if request.method == 'POST':
         # check if the post request has the file part
         if 'files' not in request.files:
@@ -187,7 +191,9 @@ def upload_file(username):
         if error_message is not None:
             return render_template('upload.html', username=username, error_message=error_message)
         else:
-            return redirect(url_for('admin'))  # Redirect to the admin page after successful upload
+            # return redirect(url_for('admin'))  # Redirect to the admin page after successful upload
+            error_message = "successful uploaded"
+            return render_template('upload.html', username=username, error_message=error_message)
 
     return render_template('upload.html', username=username, error_message=error_message)
 
@@ -221,9 +227,10 @@ def login():
 
         # Redirect back to the login page with an error message
         # return redirect(url_for('login', error_message='Invalid credentials'))
-        return redirect(url_for('login'))
+        # return redirect(url_for('login'))
+        return render_template('login.html', error_message="Invalid credentials")
 
-    return render_template('login.html')
+    return render_template('login.html', error_message="")
     
 
 @app.route('/admin', methods=['GET'])
@@ -284,6 +291,18 @@ def delete_file(filename):
 
     return redirect(url_for('admin'))
     # return render_template('admin.html', files=files, message=message)
+
+
+@app.route('/download_qr_code/<username>', methods=['GET'])
+def download_qr_code(username):
+    # Add code to generate and return the QR code image for the given username
+    # qr_code_image_path = generate_qr_code(username, unique_url)
+    print(f"UserName: {username}")
+    db.connect()
+    qr_code_image_path = db.get_qr_code_location_by_user_name(username)
+    db.close()
+    print(f"QR Path is: {qr_code_image_path}")
+    return send_from_directory('static/qrcodes', qr_code_image_path.split("/")[-1])
 
 
 if __name__ == '__main__':
