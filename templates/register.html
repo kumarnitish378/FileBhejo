@@ -64,22 +64,26 @@
 </head>
 <body>
     <h2>User Registration</h2>
+    {% if error_message %}
+        <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
     <form action="{{ url_for('register_user') }}" method="post">
-        <label for="username">Your Name/Shop Name</label>
+        <label for="username">*Your Name/Shop Name</label>
         <input type="text" name="username" required>
 
-        <label for="mobile_number">Mobile Number:</label>
+        <label for="mobile_number">*Mobile Number:</label>
         <input type="text" name="mobile_number" required>
 
-        <label for="password">Password:</label>
+        <label for="password">*Password:</label>
         <input type="password" name="password" required>
 
         <label for="role">Role:</label>
-        <input type="text" name="role" required>
+        <input type="text" name="role">
 
         <input type="submit" value="Register">
 
         <p class="login-link">Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
     </form>
 </body>
+
 </html>

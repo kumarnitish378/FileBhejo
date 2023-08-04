@@ -99,7 +99,7 @@ def register_user():
         db = MyDB(DB_NAME)
         db.connect()
         if db.insert_user(username, mobile_number, hashed_password, role):
-            qr_path = generate_qr_code(mobile_number, f"http://192.168.1.5:5000/upload/{mobile_number}")
+            qr_path = generate_qr_code(mobile_number, f"http://192.168.1.4:5000/upload/{mobile_number}")
             db.insert_qr_code_location(mobile_number, qr_path)
             return redirect(url_for('login'))  # Redirect to the login page after successful registration
         else:
