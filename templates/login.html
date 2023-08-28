@@ -1,36 +1,29 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z3CLNJ9HEE"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-    gtag('config', 'G-Z3CLNJ9HEE');
+        gtag('config', 'G-Z3CLNJ9HEE');
     </script>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/UT_LOGO.jpg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/UT_LOGO.jpg">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/UT_LOGO.jpg">
     <link rel="manifest" href="/static/site.webmanifest">
     <title>Login To FileHub</title>
+
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 20px;
-            background-color: #000;
-        }
-
-        .container {
-            max-width: 400px;
-            margin: 0 auto;
-            background-color: #111;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            background-color: #ffffff;
         }
 
         h1 {
@@ -46,7 +39,7 @@
             display: block;
             margin-bottom: 10px;
             font-weight: bold;
-            color: #fff;
+            color: #B92980;
         }
 
         input[type="text"],
@@ -63,8 +56,8 @@
         }
 
         input[type="submit"] {
-            background-color: #00ffcc;
-            color: #000;
+            background-color: #2980b9;
+            color: #000000;
             padding: 12px 24px;
             border: none;
             border-radius: 8px;
@@ -83,7 +76,7 @@
             display: block;
             text-align: center;
             margin-top: 20px;
-            color: #00ffcc;
+            color: #2980b9;
             font-weight: bold;
             text-decoration: none;
             letter-spacing: 1px;
@@ -92,14 +85,42 @@
         a:hover {
             color: #00d1a3;
         }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            margin-top: 5%;
+            background-color: #1f1f1e;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #B92980;
+        }
+
+        /* Media query for screens with a maximum width of 768px */
+        @media (max-width: 768px) {
+            .container {
+                max-width: 90%;
+                margin-top: 10%;
+                padding: 20px;
+            }
+
+            input[type="text"],
+            input[type="password"] {
+                font-size: 14px;
+            }
+
+            input[type="submit"] {
+                padding: 10px 20px;
+            }
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <h1>Login</h1>
+        <h1>Login To FileBhejo</h1>
         {% if error_message %}
-            <p style="color: red;">{{ error_message }}</p>
+        <p style="color: red;">{{ error_message }}</p>
         {% endif %}
         <form method="POST" action="{{ url_for('login') }}">
             <label for="mobile_number">Mobile Number:</label>
@@ -114,4 +135,5 @@
         <a href="{{ url_for('register_user') }}">New User Registration</a>
     </div>
 </body>
+
 </html>

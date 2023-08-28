@@ -149,8 +149,8 @@ def home_index():
 
         return render_template('upload.html', message='Files uploaded successfully')
 
-    # return render_template('upload.html')
-    return redirect(url_for("login"))
+    return render_template('landing_page.html')
+    # return redirect(url_for("login"))
 
 
 # username == mobile_number
