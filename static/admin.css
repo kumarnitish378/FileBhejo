@@ -1,0 +1,184 @@
+/* Apply some basic styling to the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Center the content within the container */
+.qr-code-container {
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  justify-content: center;
+  /* min-height: 20vh; */
+  padding: 20px;
+  margin: auto;
+  /* margin-top: 2%; */
+  background-color: rgb(255, 255, 255);
+  margin-bottom: 0px;
+  border-bottom: 2px solid #007bff;
+}
+
+/* Add space to the second div */
+.qr-code-container > div:last-child {
+  margin-left: 10%; /* Adjust the margin value as needed */
+}
+
+@media (max-width: 768px) {
+  .qr-code-container {
+    flex-direction: column;
+    align-items: center;
+    background-color: black;
+  }
+
+  /* Reset margin for the second div in column layout */
+  .qr-code-container > div:last-child {
+    margin-left: 0;
+    margin-top: 20px; /* Add top margin for spacing */
+  }
+}
+
+
+/* Style for the navigation bar */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Style for the logo on the left */
+  .nav__brand {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Style for the logout button on the right */
+  .cta {
+    background-color: #ffffff;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none;
+  }
+  
+  /* Add some margin to the right of the logout button */
+  .nav__cta {
+    margin-right: 10px;
+  }
+  
+  /* Media query for smaller screens */
+  @media (max-width: 768px) {
+    .nav {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .nav__brand img {
+      margin-right: 0; /* Remove margin between logo and text */
+      margin-bottom: 10px; /* Add margin below logo */
+    }
+  
+    .nav__cta {
+      margin-right: 0; /* Reset margin for the button */
+      margin-top: 10px; /* Add margin above button */
+    }
+  }
+/* Style for the container div */
+.acces-button {
+    text-align: center;
+
+  }
+  
+  /* Style for the QR code image */
+  .qr-code {
+    max-width: 100%; /* Make sure the image doesn't exceed its container's width */
+    height: auto;
+    display: block; /* Remove any inline spacing */
+    margin: 0 auto; /* Center the image horizontally */
+  }
+  
+  /* Style for the buttons */
+  .upload-button,
+  .download-button {
+    display: inline-block;
+    width: calc(50% - 10px); /* Each button takes up 50% of the container's width with 10px of spacing in between */
+    margin: 10px; /* Add some spacing around the buttons */
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Clear floating for the buttons */
+  .clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+
+  .mybtn{
+    display: flex;
+    background-color: #ffffff;
+  }
+  
+
+
+  /* Apply basic styling to the table */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+  }
+  
+  /* Style the table header */
+  th {
+    background-color: #f2f2f2;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  /* Style the table rows */
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Style the table cell content */
+  td {
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  /* Style the download and delete buttons */
+  .button {
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 2px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* Style the download button specifically */
+  .button.download {
+    background-color: #337ab7;
+  }
+  
+
+  .banner{
+    padding: 20px;
+  }

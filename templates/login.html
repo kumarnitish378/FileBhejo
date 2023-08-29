@@ -1,139 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z3CLNJ9HEE"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login To FileBhejo</title>
 
-        gtag('config', 'G-Z3CLNJ9HEE');
-    </script>
-
-    <link rel="apple-touch-icon" sizes="180x180" href="/static/UT_LOGO.jpg">
-    <link rel="icon" type="image/png" sizes="32x32" href="/static/UT_LOGO.jpg">
-    <link rel="icon" type="image/png" sizes="16x16" href="/static/UT_LOGO.jpg">
-    <link rel="manifest" href="/static/site.webmanifest">
-    <title>Login To FileHub</title>
-
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #ffffff;
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #fff;
-            font-size: 28px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-            color: #B92980;
-        }
-
-        input[type="text"],
-        input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #444;
-            border-radius: 4px;
-            box-sizing: border-box;
-            margin-bottom: 20px;
-            color: #fff;
-            background-color: #222;
-            font-size: 16px;
-        }
-
-        input[type="submit"] {
-            background-color: #2980b9;
-            color: #000000;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: background-color 0.3s ease;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #00d1a3;
-        }
-
-        a {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            color: #2980b9;
-            font-weight: bold;
-            text-decoration: none;
-            letter-spacing: 1px;
-        }
-
-        a:hover {
-            color: #00d1a3;
-        }
-
-        .container {
-            max-width: 400px;
-            margin: 0 auto;
-            margin-top: 5%;
-            background-color: #1f1f1e;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px #B92980;
-        }
-
-        /* Media query for screens with a maximum width of 768px */
-        @media (max-width: 768px) {
-            .container {
-                max-width: 90%;
-                margin-top: 10%;
-                padding: 20px;
-            }
-
-            input[type="text"],
-            input[type="password"] {
-                font-size: 14px;
-            }
-
-            input[type="submit"] {
-                padding: 10px 20px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
 </head>
 
 <body>
     <div class="container">
-        <h1>Login To FileBhejo</h1>
-        {% if error_message %}
-        <p style="color: red;">{{ error_message }}</p>
-        {% endif %}
-        <form method="POST" action="{{ url_for('login') }}">
-            <label for="mobile_number">Mobile Number:</label>
-            <input type="text" id="mobile_number" name="mobile_number" required>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h1>Login To FileBhejo</h1>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
+                {% if error_message %}
+                <p style="color: red;">{{ error_message }}</p>
+                {% endif %}
 
-            <input type="submit" value="Login">
-        </form>
+                <form method="POST" action="{{ url_for('login') }}">
+                    <div class="form-group">
+                        <label for="mobile_number">Mobile Number:</label>
+                        <input type="text" class="form-control" id="mobile_number" name="mobile_number" required>
+                    </div>
 
-        <a href="{{ url_for('register_user') }}">New User Registration</a>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+
+                <a href="{{ url_for('register_user') }}">New User Registration</a>
+            </div>
+        </div>
     </div>
+
+
+    <style>
+        .container {
+            /* display: flex;
+	align-items: center;
+	justify-content: center; */
+            /* min-height: 100vh; */
+            /* padding-top: 20%; */
+            margin: auto;
+            margin-top: 10%;
+            background-color: white;
+        }
+    </style>
 </body>
 
 </html>
