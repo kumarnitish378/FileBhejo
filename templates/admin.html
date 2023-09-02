@@ -51,7 +51,7 @@
             </a>
             <br>
             <div class="btn-primary mybtn">
-            <a href="{{ url_for('upload_file', username=current_user) }}" class="upload-button">Click to Upload</a>
+            <a href="{{ url_for('admin_upload_file', username=current_user) }}" class="upload-button">Click to Upload</a>
             <a href="{{ url_for('download_qr_code', username=current_user) }}" class="download-button">Download QR Code</a>
         </div>
         </div>
