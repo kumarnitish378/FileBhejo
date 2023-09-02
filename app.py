@@ -240,7 +240,7 @@ def admin_upload_file(username):
             return redirect(url_for('admin'))
             # return render_template('upload.html', username=username, error_message=error_message)
 
-    return redirect(url_for('admin'))
+    return render_template('admin_upload.html', username=username, error_message=error_message)
 
 
 
