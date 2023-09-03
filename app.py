@@ -233,7 +233,7 @@ def admin_upload_file(username):
 
         session["current_user"] = username
         if error_message is not None:
-            return render_template('upload.html', username=username, error_message=error_message)
+            return render_template('admin_upload.html', username=username, error_message=error_message)
         else:
             # return redirect(url_for('admin'))  # Redirect to the admin page after successful upload
             error_message = "successful uploaded"
@@ -247,7 +247,7 @@ def admin_upload_file(username):
 @app.route('/upload_by_id', methods=['GET', 'POST'])
 def upload_file_by_id():
     error_message = None
-
+    username = ""
     if request.method == 'POST':
         files = request.files.getlist('files')
         username = request.form["mobile"]
@@ -280,13 +280,14 @@ def upload_file_by_id():
 
         session["current_user"] = username
         if error_message is not None:
-            return render_template('upload.html', username=username, error_message=error_message)
+            return render_template('upload_by_id.html', username=username, error_message=error_message)
         else:
             # return redirect(url_for('admin'))  # Redirect to the admin page after successful upload
             error_message = "successful uploaded"
-            return render_template('upload.html', username=username, error_message=error_message)
+            # return render_template('upload.html', username=username, error_message=error_message)
+            return redirect(url_for('home_index'))
 
-    return render_template('upload.html', username=username, error_message=error_message)
+    return render_template('upload_by_id.html', username=username, error_message=error_message)
 
 
 @app.route('/unauthorized', methods=['GET'])

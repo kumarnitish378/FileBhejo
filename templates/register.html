@@ -4,6 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/static/UT_LOGO.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/UT_LOGO.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/static/UT_LOGO.jpg">
   <title>User Registration</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.0/css/bootstrap.min.css">
@@ -17,7 +20,7 @@
         <h2>User Registration</h2>
 
         {% if error_message %}
-          <p style="color: red;">{{ error_message }}</p>
+        <p style="color: red;">{{ error_message }}</p>
         {% endif %}
 
         <form action="{{ url_for('register_user') }}" method="post">
