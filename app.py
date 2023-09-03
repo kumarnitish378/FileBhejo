@@ -243,6 +243,51 @@ def admin_upload_file(username):
     return render_template('admin_upload.html', username=username, error_message=error_message)
 
 
+# username == mobile_number
+@app.route('/upload_by_id', methods=['GET', 'POST'])
+def upload_file_by_id():
+    error_message = None
+
+    if request.method == 'POST':
+        files = request.files.getlist('files')
+        username = request.form["mobile"]
+        if not files:
+            return redirect(request.url)
+
+        for file in files:
+            if file.filename == '':
+                return redirect(request.url)
+
+            if file:
+                # Save the uploaded file in the 'uploads' folder
+                # Get the current timestamp
+                timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                file.filename = f"{str(time()).replace('.', '_')}__{file.filename}"
+
+                file_path = os.path.join("uploads", file.filename)
+                file.save(file_path)
+
+                file_type, _ = mimetypes.guess_type(file.filename)
+
+                if file_type is None:
+                    file_type = "Unrecognized"
+
+                # Insert the record into the database table
+                db.connect()
+                if not db.insert_uploaded_file(username, file.filename, file_path, timestamp, file_type):
+                    error_message = 'An unknown error occurred while uploading the file.'
+                db.close()
+
+        session["current_user"] = username
+        if error_message is not None:
+            return render_template('upload.html', username=username, error_message=error_message)
+        else:
+            # return redirect(url_for('admin'))  # Redirect to the admin page after successful upload
+            error_message = "successful uploaded"
+            return render_template('upload.html', username=username, error_message=error_message)
+
+    return render_template('upload.html', username=username, error_message=error_message)
+
 
 @app.route('/unauthorized', methods=['GET'])
 def unauthorized():

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z3CLNJ9HEE"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-Z3CLNJ9HEE');
+    </script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png">
+    <link rel="manifest" href="/static/site.webmanifest">
+    <title>Upload File</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+
+        h1 {
+            color: #00ffcc;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #111;
+            border: 1px solid #444;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        input[type="file"] {
+            margin-bottom: 10px;
+            padding: 20px; /* Increase the padding to make the button larger */
+            font-size: 26px; /* Increase the font size to make the button text larger */
+            background-color: #100858; /* Set the background color */
+            color: white; /* Set the text color */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Add hover effect */
+        input[type="file"]:hover {
+            background-color: #e27508;
+        }
+
+        /* Add focus effect */
+        input[type="file"]:focus {
+            outline: none;
+            box-shadow: 0 0 5px #4CAF50; /* Add a box shadow when focused */
+        }
+
+        input[type="tel"] {
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #f4f3ff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #00ffcc;
+            color: #000;
+            padding: 20px 32px;
+            border: none;
+            font-size: 24px;
+            height: 100px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #00d1a3;
+        }
+    </style>
+</head>
+<body> 
+<div class="container">
+    <h1>Upload Files for {{ username }}</h1>
+    <form action="/upload/{{ username }}" method="POST" enctype="multipart/form-data">
+        <label for="mobile">*Mobile Number/Id:</label>
+        <input type="tel" id="mobile" name="mobile" required>
+        
+        <label for="files">Choose files:</label>
+        <input type="file" id="files" name="files" multiple required>
+        
+        <input type="submit" value="Upload">
+    </form>
+</div>
+</body>
+</html>

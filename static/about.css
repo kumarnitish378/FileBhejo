@@ -1,0 +1,272 @@
+/* Reset some default browser styles */
+body,
+h1,
+h2,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Define overall styling for the document */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+}
+
+/* Navigation styling */
+.nav {
+    width: 100vw;
+    display: grid;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    grid-template-columns: 60px repeat(2, auto);
+    grid-template-rows: repeat(2, auto);
+    grid-template-areas: "collapser brand" "collapsable collapsable";
+    border-bottom: 1px solid #0005;
+}
+
+.nav__collapser {
+    width: 30px;
+}
+
+.nav__brand {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.nav__cta {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.nav__collapsable {
+    display: grid;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    overflow: hidden;
+    max-height: 0;
+    transition: padding 500ms ease, max-height 250ms ease;
+}
+
+.nav--expanded .nav__collapsable {
+    max-height: 500px;
+    margin-top: 1rem;
+    padding: 2rem 0;
+}
+
+/* Desktop mode styles */
+@media (min-width: 700px) {
+    .nav {
+        grid-template-columns: repeat(4, auto);
+        grid-template-areas: "brand . collapsable collapsable";
+    }
+
+    .nav__collapser {
+        display: none;
+    }
+
+    .nav__collapsable {
+        max-height: 500px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .nav--expanded .nav__collapsable,
+    .nav__cta {
+        padding: 0;
+        margin: 0;
+    }
+
+    .nav__collapsable {
+        display: flex;
+        gap: 2rem;
+    }
+
+    .nav__cta {
+        margin-left: 1.5rem;
+    }
+}
+
+@media (min-width: 1000px) {
+    html {
+        font-size: 1.25rem;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.cta {
+    font-size: 1.1rem;
+    border-radius: 2em;
+    padding: 0.5em 1em;
+    border: 1px solid #0005;
+}
+
+.cta:hover {
+    background-color: #34495e;
+}
+
+.cta--bold {
+    background-color: #2980b9;
+    color: white;
+    font-weight: bold;
+}
+
+/* Container and banner styles */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.hero-text {
+    flex: 1;
+    margin-right: 3rem;
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #B92980;
+}
+
+.hero-text p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+.hero-image {
+    flex: 1;
+    text-align: center;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Feature list styles */
+.feature-list {
+    margin: 2rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.feature-list li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #3498db;
+    padding-left: 1rem;
+}
+
+/* Responsive styles for feature list on smaller screens */
+@media (max-width: 768px) {
+    .feature-list li {
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 1rem;
+        border-left: none;
+        border-top: 4px solid #3498db;
+        margin-bottom: 2rem;
+    }
+}
+
+.feature-icon {
+    flex: 0 0 30px;
+    font-size: 1.5rem;
+    color: #3498db;
+}
+
+.feature-text {
+    flex: 1;
+    font-size: 1.1rem;
+    line-height: 1.4;
+}
+
+/* Button styles */
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.button {
+    font-family: "Inter", sans-serif;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    border-radius: 2em;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 0 1rem;
+}
+
+.button:hover {
+    background-color: #2980b9;
+}
+
+/* Footer styles */
+footer {
+    background-color: #34495e;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+/* About section styles */
+.about {
+    margin-top: 3rem;
+    background-color: #f9f9f9;
+    padding: 3rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.about h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.about p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Social media icon styles */
+.social-media {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.social-icon {
+    display: inline-block;
+    margin: 0 0.5rem;
+    transition: transform 0.3s;
+}
+
+.social-icon img {
+    width: 30px;
+    height: 30px;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
+}
