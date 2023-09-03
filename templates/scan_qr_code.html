@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+    <title>QR Code Scanner</title>
+</head>
+<body>
+    <h1>QR Code Scanner</h1>
+    <button id="start-scan-button">Click to Scan</button>
+    <video id="camera-preview" width="100%" height="auto"></video>
+    <p id="result">Waiting to start scanning...</p>
+
+    <script>
+        // Use DOMContentLoaded event to ensure the HTML elements are loaded
+        document.addEventListener('DOMContentLoaded', function () {
+            // Define the video element and result placeholder
+            const videoElement = document.getElementById('camera-preview');
+            const resultElement = document.getElementById('result');
+            const startScanButton = document.getElementById('start-scan-button');
+
+            let scanning = false;
+
+            // Initialize the camera and scanner
+            function initializeCamera() {
+                if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                    navigator.mediaDevices.getUserMedia({ video: true })
+                        .then(function (stream) {
+                            videoElement.srcObject = stream;
+                        })
+                        .catch(function (error) {
+                            console.error('Error accessing the camera:', error);
+                        });
+                } else {
+                    console.error('getUserMedia not supported');
+                }
+            }
+
+            // Start the QR code scanner
+            function startScanner() {
+                Quagga.init({
+                    inputStream: {
+                        name: "Live",
+                        type: "LiveStream",
+                        target: videoElement,
+                        constraints: {
+                            width: 640,
+                            height: 480,
+                            facingMode: "environment"
+                        },
+                    },
+                    decoder: {
+                        readers: ["code_128_reader"]
+                    }
+                }, function (err) {
+                    if (err) {
+                        console.error('Error initializing Quagga:', err);
+                        return;
+                    }
+                    Quagga.start();
+                });
+
+                Quagga.onDetected(function (result) {
+                    resultElement.textContent = `QR Code detected: ${result.codeResult.code}`;
+                });
+            }
+
+            // Add a click event listener to the button to start scanning
+            startScanButton.addEventListener('click', function () {
+                if (!scanning) {
+                    scanning = true;
+                    resultElement.textContent = 'Scanning...'; // Reset result text
+                    startScanner(); // Start the QR code scanner
+                }
+            });
+
+            // Initialize the camera when the page loads
+            initializeCamera();
+        });
+    </script>
+</body>
+</html>
