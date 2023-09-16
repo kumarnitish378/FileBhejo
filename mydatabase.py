@@ -13,7 +13,7 @@ class MyDB:
         self.conn.execute('''
             CREATE TABLE IF NOT EXISTS users (
                 user_id INTEGER PRIMARY KEY AUTOINCREMENT,
-                username TEXT UNIQUE NOT NULL,
+                username TEXT NOT NULL,
                 mobile_number TEXT UNIQUE NOT NULL,
                 password_hash TEXT NOT NULL,
                 role TEXT NOT NULL
@@ -223,5 +223,8 @@ class MyDB:
 
 if __name__ == "__main__":
     db = MyDB("printpro.db")
-    # db.create_qr_code_locations_table()
-    print(db.get_files_by_username('7631256855'))
+    db.connect()
+    db.close()
+    db.create_qr_code_locations_table()
+    # print(db.get_files_by_username('7631256855'))
+    # db.close()
