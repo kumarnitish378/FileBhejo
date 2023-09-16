@@ -91,8 +91,8 @@ def register_user():
 
     if request.method == 'POST':
         # Get form data
-        username = request.form['username']
-        mobile_number = request.form['mobile_number']
+        username = request.form['name']
+        mobile_number = request.form['username']
         password = request.form['password']
         role = request.form['role']
         # hashed_password = hash_password(password)
