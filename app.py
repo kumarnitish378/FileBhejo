@@ -149,7 +149,7 @@ def home_index():
 
         return render_template('upload.html', message='Files uploaded successfully')
 
-    return render_template('landing_page.html')
+    return render_template('index.html')
     # return redirect(url_for("login"))
 
 
