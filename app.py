@@ -7,6 +7,8 @@ import bcrypt
 import qrcode
 import sqlite3
 from time import time
+from qr_banner import generate_file_bhejo_pdf
+from mask_qr_generation import create_image_with_text
 
 
 app = Flask(__name__)
@@ -392,9 +394,16 @@ def download_qr_code(username):
     print(f"UserName: {username}")
     db.connect()
     qr_code_image_path = db.get_qr_code_location_by_user_name(username)
+    shop_name = db.get_shop_name_by_user_name(username)
     db.close()
     print(f"QR Path is: {qr_code_image_path}")
-    return send_from_directory('static/qrcodes', qr_code_image_path.split("/")[-1])
+    # file_location = generate_file_bhejo_pdf(qr_code_image_path, username)
+
+    file_location = create_image_with_text(qr_code_image_path, shop_name[0:25], f"F-ID {username}")
+
+    print(file_location, 6666)
+    # return send_from_directory('static/qrcodes', qr_code_image_path.split("/")[-1])
+    return send_from_directory("static/qr_poster/", file_location.split("/")[-1])
 
 
 # Route for the admin page

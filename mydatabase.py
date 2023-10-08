@@ -162,6 +162,14 @@ class MyDB:
         return cursor.fetchone()[0] if cursor else None
 
     
+    def get_shop_name_by_user_name(self, user_name):
+        query = "SELECT username FROM users WHERE mobile_number = ?"
+        data = (user_name,)
+        cursor = self.execute_query(query, data)
+        return cursor.fetchone()[0] if cursor else None
+
+
+    
     def get_files_by_username(self, username):
         query = '''
             SELECT file_name, file_path, timestamp, file_type
