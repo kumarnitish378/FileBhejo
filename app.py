@@ -7,7 +7,6 @@ import bcrypt
 import qrcode
 import sqlite3
 from time import time
-from qr_banner import generate_file_bhejo_pdf
 from mask_qr_generation import create_image_with_text
 
 

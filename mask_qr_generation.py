@@ -26,12 +26,12 @@ def create_image_with_text(qr_image_path, text_1, text_2):
     draw = ImageDraw.Draw(mask_pil_image)
 
     # Specify the font and font size
-    font_size = 90
-    font = ImageFont.truetype("arial.ttf", font_size)
+    font_size = 70
+    font = ImageFont.truetype("FreeMono.ttf", font_size)
 
     # Calculate the position to place Text_1 and Text_2 above the QR image
-    text_1_width, text_1_height = draw.textlength(text_1, font=font), 90
-    text_2_width, text_2_height = draw.textlength(text_2, font=font), 90
+    text_1_width, text_1_height = draw.textlength(text_1, font=font), 70
+    text_2_width, text_2_height = draw.textlength(text_2, font=font), 70
 
     text_1_x = (width - text_1_width) // 2
     text_2_x = (width - text_2_width) // 2
@@ -48,13 +48,14 @@ def create_image_with_text(qr_image_path, text_1, text_2):
     cv2.imwrite(f"static/qr_poster/qr_image_{text_1}.png", final_image)
     return f"static/qr_poster/qr_image_{text_1}.png"
 
-# Example usage of the function
-qr_image_path = "static/qrcodes/7004969879_qr.png"
-text_1 = "ABCD Printing Service"
-text_2 = "F-ID: 7004969879"
-resulting_image = create_image_with_text(qr_image_path, text_1, text_2)
+if __name__ == "__main__":
+    # Example usage of the function
+    qr_image_path = "static/qrcodes/7004969879_qr.png"
+    text_1 = "ABCD Printing Service"
+    text_2 = "F-ID: 7004969879"
+    resulting_image = create_image_with_text(qr_image_path, text_1, text_2)
 
-# Display the final image (uncomment this line if you want to display the image)
-# cv2.imshow("Final Image", resulting_image)
-# cv2.waitKey(0)
-# cv2.destroyAllWindows()
+    # Display the final image (uncomment this line if you want to display the image)
+    # cv2.imshow("Final Image", resulting_image)
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
