@@ -5,6 +5,7 @@ import mimetypes
 from mydatabase import MyDB
 import bcrypt
 import qrcode
+import sqlite3
 from time import time
 
 
@@ -395,6 +396,31 @@ def download_qr_code(username):
     print(f"QR Path is: {qr_code_image_path}")
     return send_from_directory('static/qrcodes', qr_code_image_path.split("/")[-1])
 
+
+# Route for the admin page
+@app.route('/myadmin')
+def myadmin():
+    # Connect to the SQLite3 database
+    conn = sqlite3.connect('printpro.db')  # Replace 'your_database.db' with your database file name
+    cursor = conn.cursor()
+    
+    # Get the count of registered users
+    cursor.execute('SELECT COUNT(*) FROM users')
+    user_count = cursor.fetchone()[0]
+    
+    # Get the user data for the table
+    cursor.execute('SELECT user_id, username, mobile_number FROM users')
+    users = cursor.fetchall()
+    
+    # Close the database connection
+    conn.close()
+    print(user_count, users)
+    
+    return render_template('myadmin.html', user_count=user_count, users=users)
+
+@app.route("/how_to", methods=["GET", "POST"])
+def how_to_use():
+    return render_template("how_to.html")
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
