@@ -329,3 +329,68 @@ footer {
 .social-icon:hover {
     transform: scale(1.2);
 }
+
+
+/* Style for the support-contact div */
+.support-contact {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/* Style for the heading */
+.support-contact h2 {
+    font-size: 24px;
+    color: #333;
+}
+
+/* Style for the paragraph text */
+.support-contact p {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Style for links */
+.support-contact a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+/* Style for links on hover */
+.support-contact a:hover {
+    text-decoration: underline;
+}
+
+/* Style for the highlighted text */
+/* .highlight {
+    background-color: #B92980;
+    font-weight: bold;
+    color: #f2f2f2;
+} */
+
+
+/* Style for the highlighted text with animation */
+.highlight {
+    font-weight: bold;
+}
+
+.animated-text {
+    background-color: yellow; /* You can use any color you prefer */
+    animation: fade 4s infinite; /* 2-second fade animation, infinite loop */
+}
+
+@keyframes fade {
+    0% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.2;
+    }
+}

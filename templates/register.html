@@ -41,7 +41,7 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-6">
-        <h2>User Registration</h2>
+        <h2>User Registration with file Bhejo</h2>
 
         {% if error_message %}
         <p style="color: red;">{{ error_message }}</p>
@@ -59,13 +59,16 @@
           </div>
 
           <div class="form-group">
-            <label for="password">*Password:</label>
+            <label for="password">*Set Password:</label>
             <input type="password" class="form-control" id="password" name="password" required>
           </div>
 
           <div class="form-group">
-            <label for="role">Role:</label>
-            <input type="text" class="form-control" id="role" name="role">
+            <label for="role">User Type:</label>
+            <select class="form-control" id="role" name="role">
+              <option value="individual">Individual</option>
+              <option value="business">Business</option>
+            </select>
           </div>
 
           <button type="submit" class="btn btn-primary">Register</button>
